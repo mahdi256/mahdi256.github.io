@@ -1,452 +1,746 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="de">
 <head>
-  <!-- Basic -->
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <!-- Mobile Metas -->
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <!-- Site Metas -->
-  <meta name="keywords" content="" />
-  <meta name="description" content="" />
-  <meta name="author" content="" />
-  <link rel="shortcut icon" href="images/fevicon.png" type="">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KÖSE CLEAN – Sauber &amp; Glänzend | Konstanz</title>
+  <meta name="description" content="Professionelle Reinigung in Konstanz und Umgebung. Büro-, Gebäude- und Haushaltsreinigung seit 2010. Jetzt Anfragen!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <title> Diallo shipping </title>
+    :root {
+      --blue:    #1A56DB;
+      --blue-dk: #1245b0;
+      --blue-lt: #EBF2FF;
+      --gray-50: #F8FAFC;
+      --gray-100:#F1F5F9;
+      --gray-300:#CBD5E1;
+      --gray-500:#64748B;
+      --gray-700:#334155;
+      --gray-900:#0F172A;
+      --white:   #FFFFFF;
+      --radius:  12px;
+      --shadow:  0 4px 24px rgba(0,0,0,.08);
+    }
 
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', system-ui, sans-serif; color: var(--gray-900); background: var(--white); line-height: 1.6; }
 
-  <!-- bootstrap core css -->
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; height: 68px;
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -.5px; color: var(--gray-900); text-decoration: none; }
+    .logo span { color: var(--blue); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { text-decoration: none; font-size: .9rem; font-weight: 500; color: var(--gray-700); transition: color .2s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: var(--white); padding: 9px 20px; border-radius: 8px; text-decoration: none; font-size: .88rem; font-weight: 600; transition: background .2s; }
+    .nav-cta:hover { background: var(--blue-dk); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gray-700); border-radius: 2px; }
 
-  <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      color: var(--white);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('https://static.wixstatic.com/media/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg');
+      background-size: cover; background-position: center 30%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(5,10,25,1)   0%,
+        rgba(5,10,25,.85) 35%,
+        rgba(5,10,25,.4)  65%,
+        rgba(5,10,25,.1)  100%
+      );
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 24px 80px;
+      width: 100%;
+    }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.9); padding: 7px 16px; border-radius: 999px;
+      font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -2px; margin-bottom: 24px;
+      max-width: 700px;
+    }
+    .hero h1 span { color: #60a5fa; }
+    .hero-desc {
+      font-size: 1.1rem; color: rgba(255,255,255,.7);
+      line-height: 1.7; margin-bottom: 40px;
+      max-width: 520px;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 60px; }
+    .btn-primary {
+      background: var(--white); color: var(--gray-900);
+      padding: 16px 32px; border-radius: 10px; font-weight: 700;
+      text-decoration: none; font-size: 1rem;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(0,0,0,.4); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.35); color: var(--white);
+      padding: 16px 32px; border-radius: 10px; font-weight: 600;
+      text-decoration: none; font-size: 1rem;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-outline:hover { border-color: rgba(255,255,255,.8); background: rgba(255,255,255,.08); }
+    .hero-stats {
+      display: flex; gap: 0; flex-wrap: wrap;
+    }
+    .stat {
+      display: flex; flex-direction: column; gap: 4px;
+      padding: 0 40px 0 0;
+      border-right: 1px solid rgba(255,255,255,.15);
+      margin-right: 40px;
+    }
+    .stat:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+    .stat strong { font-size: 2.2rem; font-weight: 800; color: var(--white); line-height: 1; }
+    .stat span   { font-size: .78rem; color: rgba(255,255,255,.45); text-transform: uppercase; letter-spacing: 1px; }
 
-  <!--owl slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    @media (max-width: 768px) {
+      .hero { min-height: 100svh; }
+      .hero-inner { padding: 0 24px 60px; }
+      .hero h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); letter-spacing: -1px; }
+      .hero-stats { gap: 24px; }
+      .stat { border-right: none; padding-right: 0; margin-right: 0; }
+    }
 
-  <!-- font awesome style -->
-  <link href="css/font-awesome.min.css" rel="stylesheet" />
+    /* ── SECTIONS ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: .75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; letter-spacing: -.5px; line-height: 1.2; margin-bottom: 16px; }
+    .section-sub { font-size: 1.05rem; color: var(--gray-500); max-width: 520px; margin-bottom: 56px; }
 
-  <!-- Custom styles for this template -->
-  <link href="css/style.css" rel="stylesheet" />
-  <!-- responsive style -->
-  <link href="css/responsive.css" rel="stylesheet" />
+    /* ── SERVICES ── */
+    #leistungen { background: var(--gray-50); }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .service-card { background: var(--white); border-radius: var(--radius); padding: 32px 28px; border: 1px solid var(--gray-100); transition: box-shadow .25s, transform .25s; }
+    .service-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .service-card-img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
+    .service-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--blue-lt); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
+    .service-card p  { font-size: .92rem; color: var(--gray-500); line-height: 1.65; }
 
+    /* ── VIDEO ── */
+    #video-section { background: var(--gray-900); padding: 80px 24px; }
+    #video-section .section-label { color: #93c5fd; }
+    #video-section .section-title { color: var(--white); }
+    #video-section .section-sub { color: rgba(255,255,255,.6); }
+    .video-wrapper {
+      position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
+      border-radius: 16px; box-shadow: 0 24px 64px rgba(0,0,0,.5);
+    }
+    .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+    /* ── WHY US ── */
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .why-list { list-style: none; display: flex; flex-direction: column; gap: 24px; }
+    .why-item { display: flex; gap: 16px; align-items: flex-start; }
+    .why-check { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--blue-lt); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 700; margin-top: 2px; }
+    .why-item h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .why-item p  { font-size: .9rem; color: var(--gray-500); }
+    .why-visual { background: linear-gradient(145deg, #1A56DB, #0f1f4b); border-radius: 20px; padding: 40px 36px; color: var(--white); display: flex; flex-direction: column; gap: 28px; }
+    .why-visual .big-num { font-size: 4rem; font-weight: 800; line-height: 1; color: #93c5fd; }
+    .why-visual p { font-size: 1rem; opacity: .85; }
+    .why-visual .divider { height: 1px; background: rgba(255,255,255,.15); }
+
+    /* ── GALERIE ── */
+    #galerie { background: var(--gray-50); }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+    .gallery-item { overflow: hidden; border-radius: 10px; cursor: pointer; position: relative; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:first-child img { height: 400px; }
+    .gallery-item:not(:first-child) img { height: 192px; }
+    .gallery-overlay {
+      position: absolute; inset: 0; background: rgba(26,86,219,.0);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .3s;
+    }
+    .gallery-item:hover .gallery-overlay { background: rgba(26,86,219,.3); }
+    .gallery-overlay svg { opacity: 0; transition: opacity .3s; color: white; }
+    .gallery-item:hover .gallery-overlay svg { opacity: 1; }
+
+    /* Lightbox */
+    #lightbox {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: rgba(0,0,0,.92); align-items: center; justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 8px; box-shadow: 0 32px 80px rgba(0,0,0,.6); }
+    #lightbox-close { position: absolute; top: 24px; right: 28px; color: white; font-size: 2rem; cursor: pointer; background: none; border: none; line-height: 1; opacity: .7; transition: opacity .2s; }
+    #lightbox-close:hover { opacity: 1; }
+    #lightbox-prev, #lightbox-next { position: absolute; top: 50%; transform: translateY(-50%); color: white; font-size: 2.5rem; cursor: pointer; background: none; border: none; opacity: .6; transition: opacity .2s; }
+    #lightbox-prev { left: 20px; }
+    #lightbox-next { right: 20px; }
+    #lightbox-prev:hover, #lightbox-next:hover { opacity: 1; }
+
+    /* ── REFERENZEN ── */
+    #referenzen { background: var(--white); }
+
+    /* ── KUNDEN KARUSSELL ── */
+    #kunden {
+      background: var(--gray-50);
+      padding: 56px 24px;
+      border-top: 1px solid var(--gray-100);
+      overflow: hidden;
+    }
+    .kunden-label {
+      text-align: center; font-size: .75rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--gray-500); margin-bottom: 36px;
+    }
+    .kunden-track-wrap { overflow: hidden; position: relative; }
+    .kunden-track-wrap::before,
+    .kunden-track-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
+    }
+    .kunden-track-wrap::before { left: 0;  background: linear-gradient(to right, var(--gray-50), transparent); }
+    .kunden-track-wrap::after  { right: 0; background: linear-gradient(to left,  var(--gray-50), transparent); }
+    .kunden-track {
+      display: flex; gap: 48px; align-items: center;
+      width: max-content;
+      animation: scroll-logos 50s linear infinite;
+    }
+    .kunden-track:hover { animation-play-state: paused; }
+    .kunden-track img {
+      height: 52px; width: auto;
+      filter: grayscale(100%) opacity(50%);
+      transition: filter .3s;
+      flex-shrink: 0;
+    }
+    .kunden-track img:hover { filter: grayscale(0%) opacity(100%); }
+    @keyframes scroll-logos {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .testimonial-card { background: var(--gray-50); border-radius: var(--radius); padding: 28px; border: 1px solid var(--gray-100); display: flex; flex-direction: column; gap: 16px; }
+    .stars { color: #f59e0b; font-size: 1rem; letter-spacing: 2px; }
+    .testimonial-card p { font-size: .93rem; color: var(--gray-700); line-height: 1.7; flex: 1; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
+    .avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--blue-lt); color: var(--blue); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: .9rem; }
+    .author-info strong { display: block; font-size: .9rem; font-weight: 700; }
+    .author-info span   { font-size: .8rem; color: var(--gray-500); }
+
+    /* ── CONTACT ── */
+    #kontakt { background: var(--gray-50); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item { display: flex; gap: 16px; align-items: flex-start; }
+    .contact-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; background: var(--blue-lt); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .contact-item h4 { font-size: .85rem; font-weight: 600; color: var(--gray-500); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .5px; }
+    .contact-item a, .contact-item p { font-size: 1rem; color: var(--gray-900); text-decoration: none; font-weight: 500; }
+    .contact-item a:hover { color: var(--blue); }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; background: var(--white); padding: 36px; border-radius: var(--radius); box-shadow: var(--shadow); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: .85rem; font-weight: 600; color: var(--gray-700); }
+    .form-group input, .form-group select, .form-group textarea { padding: 12px 14px; border-radius: 8px; border: 1.5px solid var(--gray-300); font-size: .95rem; font-family: inherit; transition: border-color .2s, box-shadow .2s; background: var(--white); color: var(--gray-900); width: 100%; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgba(26,86,219,.12); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .btn-submit { background: var(--blue); color: var(--white); padding: 14px 28px; border-radius: 10px; font-size: 1rem; font-weight: 700; border: none; cursor: pointer; transition: background .2s, transform .2s; }
+    .btn-submit:hover { background: var(--blue-dk); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--gray-900); color: rgba(255,255,255,.6); padding: 48px 24px 32px; text-align: center; }
+    footer .footer-logo { font-size: 1.4rem; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    footer .footer-logo span { color: #93c5fd; }
+    footer > p { font-size: .88rem; margin-bottom: 24px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px; }
+    .footer-links a { color: rgba(255,255,255,.5); text-decoration: none; font-size: .85rem; transition: color .2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; margin-top: 8px; }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu { display: none; flex-direction: column; background: var(--white); border-bottom: 1px solid var(--gray-100); padding: 16px 24px 20px; gap: 4px; }
+    #mobile-menu.open { display: flex; }
+    #mobile-menu a { padding: 10px 0; font-size: .95rem; font-weight: 500; color: var(--gray-700); text-decoration: none; border-bottom: 1px solid var(--gray-100); }
+    #mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:first-child { grid-column: span 2; }
+      .gallery-item:first-child img { height: 280px; }
+      .gallery-item:not(:first-child) img { height: 160px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      .hero { padding: 72px 24px 60px; }
+      .hero-stats { gap: 28px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-item:first-child { grid-column: span 1; }
+    }
+  </style>
 </head>
-
 <body>
 
-  <div class="hero_area">
-    <!-- header section strats -->
-    <header class="header_section">
-      <!--
-      <div class="header_top">
-        <div class="container-fluid ">
-          <div class="contact_nav">
-            <a href="">
-              <i class="fa fa-phone" aria-hidden="true"></i>
-              <span>
-                Call : +01 123455678990
-              </span>
-            </a>
-            <a href="">
-              <i class="fa fa-envelope" aria-hidden="true"></i>
-              <span>
-                Email : demo@gmail.com
-              </span>
-            </a>
-            <a href="">
-              <i class="fa fa-map-marker" aria-hidden="true"></i>
-              <span>
-                Location
-              </span>
-            </a>
-          </div>
-        </div>
-        
-      </div>
-      -->
-      <div class="header_bottom">
-        <div class="container-fluid">
-          <nav class="navbar navbar-expand-lg custom_nav-container ">
-            <a class="navbar-brand" href="index.html">
-              <span>
-                Diallo Shipping
-              </span>
-            </a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class=""> </span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#service">Services</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#about"> Über uns</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="en.html"><u>Englisch</u> </a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#"> <i class="fa fa-user" aria-hidden="true"></i> Login</a>
-                </li> -->
-                <!-- <form class="form-inline">
-                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                  </button>
-                </form> -->
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </header>
-    <!-- end header section -->
-    <!-- slider section -->
-    <section class="slider_section ">
-      <div class="slider_bg_box">
-        <img src="images/slider-bg.jpg" alt="">
-      </div>
-      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="container ">
-              <div class="row">
-                <div class="col-md-7 ">
-                  <div class="detail-box">
-                    <h1>
-                      Sparen Sie Zeit und Ressourcen mit Diallo Shipping
-                      
-                    </h1>
-                    <p>
-                      Effiziente Logistiklösungen für reibungslose Versandabläufe.
-                    </p>
-                    <p>
-                      Ob auf der Straße, auf der Schiene, zu Wasser oder in der Luft - bei uns sind Ihre Güter in den besten Händen.
-                    </p>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          </div>
-        </div>
-      </div>
-
-    </section>
-    <!-- end slider section -->
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">KÖSE<span>CLEAN</span></a>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#video-section">Video</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="tel:015122577648" class="nav-cta">☎ Jetzt anrufen</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Menü öffnen">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+  <div id="mobile-menu">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#video-section">Video</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="tel:015122577648" style="color:var(--blue);font-weight:700;">☎ 015122577648</a>
+  </div>
+</nav>
 
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-inner">
+    <div class="hero-tag">★&nbsp; Seit 2010 in Konstanz</div>
+    <h1>Sauber.<br/>Glänzend.<br/><span>KÖSE CLEAN.</span></h1>
+    <p class="hero-desc">Professionelle Reinigung für Privat und Gewerbe – mit Leidenschaft und Zuverlässigkeit. Konstanz, die Region und die Schweiz.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Jetzt kostenlos anfragen</a>
+      <a href="tel:015122577648" class="btn-outline">☎ 015122 577648</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><strong>15+</strong><span>Jahre Erfahrung</span></div>
+      <div class="stat"><strong>100%</strong><span>Zufrieden</span></div>
+      <div class="stat"><strong>DE + CH</strong><span>Einsatzgebiet</span></div>
+    </div>
+  </div>
+</header>
 
-  <!-- service section -->
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="section-inner">
+    <p class="section-label">Was wir anbieten</p>
+    <h2 class="section-title">Unsere Leistungen</h2>
+    <p class="section-sub">Von der Grundreinigung bis zum Winterdienst – wir übernehmen alles zuverlässig und mit Leidenschaft.</p>
+    <div class="services-grid">
 
-  <section class="service_section layout_padding"id='service'>
-    <div class="service_container">
-      <div class="container ">
-        <div class="heading_container">
-          <h2>
-            Unsere <span>Dienste</span>
-          </h2>
-          
+      <div class="service-card">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=340&fit=crop&auto=format" alt="Haushaltsreinigung" loading="lazy" />
+        <div class="service-icon">🏠</div>
+        <h3>Haushaltsreinigung</h3>
+        <p>Professionelle Reinigung Ihrer Wohnung oder Ihres Hauses – regelmäßig oder als Einmal-Service. Sauber, gründlich und diskret.</p>
+      </div>
+
+      <div class="service-card">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=340&fit=crop&auto=format" alt="Büroreinigung" loading="lazy" />
+        <div class="service-icon">🏢</div>
+        <h3>Büro- &amp; Gebäudereinigung</h3>
+        <p>Saubere Arbeitsräume steigern die Produktivität. Wir reinigen Ihr Büro oder Gebäude zuverlässig – auch außerhalb der Geschäftszeiten.</p>
+      </div>
+
+      <div class="service-card">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=340&fit=crop&auto=format" alt="Praxisreinigung" loading="lazy" />
+        <div class="service-icon">🏥</div>
+        <h3>Praxisreinigung</h3>
+        <p>Hygienische Reinigung für Arzt- und Zahnarztpraxen nach höchsten Standards. Zuverlässig, diskret und termingerecht.</p>
+      </div>
+
+      <div class="service-card">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1611194625888-3c6621587ee4?w=600&h=340&fit=crop&auto=format" alt="Winterdienst" loading="lazy" />
+        <div class="service-icon">❄️</div>
+        <h3>Winterdienst</h3>
+        <p>Räumen, streuen, sichern – wir sorgen dafür, dass Ihre Wege und Einfahrten im Winter sicher und eisfrei bleiben.</p>
+      </div>
+
+      <div class="service-card">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&h=340&fit=crop&auto=format" alt="Grundreinigung" loading="lazy" />
+        <div class="service-icon">✨</div>
+        <h3>Grundreinigung</h3>
+        <p>Einmalige Tiefenreinigung für besondere Anlässe, Umzüge oder wenn es mal so richtig gründlich sein soll.</p>
+      </div>
+
+      <div class="service-card">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1581578949510-fa7315c4c350?w=600&h=340&fit=crop&auto=format" alt="Kehrwoche" loading="lazy" />
+        <div class="service-icon">🏗️</div>
+        <h3>Kehrwoche</h3>
+        <p>Wir übernehmen Ihre Kehrwochenpflichten in Treppenhäusern und Gemeinschaftsflächen – zuverlässig und regelmäßig.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WARUM WIR -->
+<section id="warum-wir">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <p class="section-label">Warum KÖSE CLEAN</p>
+        <h2 class="section-title">Reinigung mit Leidenschaft</h2>
+        <p class="section-sub" style="margin-bottom:40px;">Wir sind mehr als ein Reinigungsunternehmen – wir sorgen dafür, dass Sie sich in Ihren Räumen rundum wohlfühlen.</p>
+        <ul class="why-list">
+          <li class="why-item">
+            <div class="why-check">✓</div>
+            <div><h4>Erfahrung seit 2010</h4><p>Über 15 Jahre Erfahrung in der professionellen Reinigung – mit vielen zufriedenen Stammkunden.</p></div>
+          </li>
+          <li class="why-item">
+            <div class="why-check">✓</div>
+            <div><h4>Flexibel &amp; zuverlässig</h4><p>Wir passen uns Ihren Zeiten und Wünschen an – und sind immer für Sie erreichbar.</p></div>
+          </li>
+          <li class="why-item">
+            <div class="why-check">✓</div>
+            <div><h4>Region Konstanz &amp; Schweiz</h4><p>Wir sind in Konstanz, der ganzen Region und auf der Schweizer Seite für Sie im Einsatz.</p></div>
+          </li>
+          <li class="why-item">
+            <div class="why-check">✓</div>
+            <div><h4>Professionelles Equipment</h4><p>Mit modernen Geräten und professionellen Reinigungsmitteln erzielen wir dauerhaft optimale Ergebnisse.</p></div>
+          </li>
+        </ul>
+      </div>
+      <div class="why-visual">
+        <div><div class="big-num">15+</div><p>Jahre Erfahrung in Konstanz und Umgebung</p></div>
+        <div class="divider"></div>
+        <div><div class="big-num">∞</div><p>Zufriedene Kunden – von Privathaushalten bis zu Arztpraxen</p></div>
+        <div class="divider"></div>
+        <div><div class="big-num">2</div><p>Länder – Deutschland und die Schweiz</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section id="video-section">
+  <div class="section-inner">
+    <p class="section-label">Uns in Aktion sehen</p>
+    <h2 class="section-title" style="color:white;">KÖSE CLEAN – Das sind wir</h2>
+    <p class="section-sub">Sehen Sie selbst, wie wir arbeiten und warum unsere Kunden uns vertrauen.</p>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/ijrosaaAnL4"
+        title="KÖSE CLEAN – Firmenvideo"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie">
+  <div class="section-inner">
+    <p class="section-label">Fotogalerie</p>
+    <h2 class="section-title">Unsere Arbeit in Bildern</h2>
+    <p class="section-sub">Einblicke in unsere tägliche Arbeit – für Privat- und Geschäftskunden.</p>
+    <div class="gallery-grid" id="gallery-grid">
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_76da16e56a324b729451b18ab0c0673d~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_76da16e56a324b729451b18ab0c0673d~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/90a441_76da16e56a324b729451b18ab0c0673d~mv2.jpg" alt="KÖSE CLEAN Arbeit 1" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_4fcb31a65ee64740b6ab128b97284535~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_4fcb31a65ee64740b6ab128b97284535~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_4fcb31a65ee64740b6ab128b97284535~mv2.jpg" alt="KÖSE CLEAN Arbeit 2" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_aff9a6b10cae48b7a0074efc288e5a8f~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_aff9a6b10cae48b7a0074efc288e5a8f~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_aff9a6b10cae48b7a0074efc288e5a8f~mv2.jpg" alt="KÖSE CLEAN Arbeit 3" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_8a5cf4d5d2524e1f9058446077805136~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_8a5cf4d5d2524e1f9058446077805136~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_8a5cf4d5d2524e1f9058446077805136~mv2.jpg" alt="KÖSE CLEAN Arbeit 4" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_912016ea39734b0a8f0ef976ded7f324~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_912016ea39734b0a8f0ef976ded7f324~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_912016ea39734b0a8f0ef976ded7f324~mv2.jpg" alt="KÖSE CLEAN Arbeit 5" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_2fee8c27cb5b4a7ba6db668d1340a190~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_2fee8c27cb5b4a7ba6db668d1340a190~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_2fee8c27cb5b4a7ba6db668d1340a190~mv2.jpg" alt="KÖSE CLEAN Arbeit 6" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg">
+        <img src="https://static.wixstatic.com/media/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg" alt="KÖSE CLEAN Arbeit 7" loading="lazy" />
+        <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <button id="lightbox-close">✕</button>
+  <button id="lightbox-prev">‹</button>
+  <img id="lightbox-img" src="" alt="" />
+  <button id="lightbox-next">›</button>
+</div>
+
+<!-- REFERENZEN -->
+<section id="referenzen">
+  <div class="section-inner">
+    <p class="section-label">Das sagen unsere Kunden</p>
+    <h2 class="section-title">Referenzen</h2>
+    <p class="section-sub">Wir stehen für Qualität – und unsere Kunden bestätigen das täglich.</p>
+    <div class="testimonial-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„KÖSE CLEAN reinigt unser Büro seit Jahren. Immer pünktlich, immer gründlich – wir sind rundum zufrieden und würden sie jederzeit weiterempfehlen."</p>
+        <div class="testimonial-author">
+          <div class="avatar">MH</div>
+          <div class="author-info"><strong>M. Hoffmann</strong><span>Unternehmerin, Konstanz</span></div>
         </div>
-        <div class="row">
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s11.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Autotransport
-                </h5>
-                <p>
-                  Unsere Dienstleistungen sind darauf ausgerichtet, Ihren Transportbedarf zu decken. Wir haben die Kapazität, Fahrzeuge im Inland und weltweit zu transportieren. Bei Bedarf nutzen wir auch zusätzliche Logistikdienste.
-                </p>
-            
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s22.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Frachttransport
-                </h5>
-                <p>
-                  Wir können Ihnen bei <b>LCL</b>  (less than container-load) und <b>FCL</b>  (full container-load) helfen, um sicherzustellen, dass Ihre Sendung ordnungsgemäß gelagert und sicher an den Bestimmungsort transportiert wird.
-                </p>
-                
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s33.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Straßengütertransport
-                </h5>
-                <p>
-                  Unsere Inlandstransporte sind so konzipiert, dass Ihre Waren in kürzerer Zeit an ihren Bestimmungsort gelangen - Ihre Waren verbleiben in demselben Transportbehälter, in dem sie am Ursprungsort verpackt waren.
-                </p>
-                
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 ">
-            <div class="box ">
-              <div class="img-box">
-                <img src="images/s44.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Zollabfertigung
-                </h5>
-                <p>
-                  Wir bieten die gesamte Palette an Zollabfertigungs- und Compliance-Dienstleistungen, die für den internationalen Versand erforderlich sind.
-                  <br>
-                  <br>
-
-                </p>
-                
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Die Grundreinigung nach unserem Umzug war fantastisch. Die Wohnung hat danach wie neu gestrahlt. Sehr professionelles Team!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">SR</div>
+          <div class="author-info"><strong>S. Richter</strong><span>Privatkundin, Konstanz</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Für unsere Arztpraxis benötigen wir höchste Hygienestandards. KÖSE CLEAN erfüllt diese Anforderungen stets zuverlässig und diskret."</p>
+        <div class="testimonial-author">
+          <div class="avatar">DR</div>
+          <div class="author-info"><strong>Dr. Reuter</strong><span>Zahnarztpraxis, Konstanz</span></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- end service section -->
-
-
-  <!-- about section -->
-
-  <section class="about_section layout_padding-bottom"id='about'>
-    <div class="container  ">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-                Über <span>Uns</span>
-              </h2>
-            </div>
-            <p>
-              Diallo Shipping ist ein Logistikunternehmen mit Sitz in Konstanz, Deutschland. Unser Ziel ist es, unsere Kunden mit effizienten und zuverlässigen Transportdienstleistungen zu versorgen. Wir sind stolz auf unser Engagement für Kundenzufriedenheit und unsere Fähigkeit, Waren pünktlich und in perfektem Zustand zu liefern. Unser Expertenteam verfügt über langjährige Erfahrung in der Branche und ist bestrebt, alle Ihre Logistikanforderungen zu erfüllen.
-            </p>
-          
-          </div>
-        </div>
-        <div class="col-md-6 ">
-          <div class="img-box">
-            <img src="images/autos.jpg" alt="">
-          </div>
-        </div>
-
-      </div>
+<!-- KUNDEN KARUSSELL -->
+<section id="kunden">
+  <p class="kunden-label">Unsere Kunden vertrauen uns</p>
+  <div class="kunden-track-wrap">
+    <div class="kunden-track">
+      <img src="foto/depot.avif"    alt="Depot" />
+      <img src="foto/kaufland.avif" alt="Kaufland" />
+      <img src="foto/mainau.avif"   alt="Mainau" />
+      <img src="foto/osiander.avif" alt="Osiander" />
+      <img src="foto/1.avif"        alt="Kunde" />
+      <img src="foto/2.avif"        alt="Berry's" />
+      <img src="foto/3.avif"        alt="STRABAG" />
+      <img src="foto/4.avif"        alt="Dolzer" />
+      <img src="foto/5.avif"        alt="BLÜCHER" />
+      <img src="foto/7.avif"        alt="Gangbild" />
+      <img src="foto/8.avif"        alt="Ärzte am Seerhein" />
+      <img src="foto/9.avif"        alt="Diabetologie Konstanz" />
+      <img src="foto/10.avif"       alt="Ines" />
+      <img src="foto/11.avif"       alt="Praxis im Klosterhof" />
+      <img src="foto/13.avif"       alt="NABU" />
+      <img src="foto/14.avif"       alt="Tortuga" />
+      <img src="foto/15.avif"       alt="LEO Werkstatt" />
+      <img src="foto/16.avif"       alt="ac blue planet" />
+      <img src="foto/17.avif"       alt="Weber" />
+      <!-- Duplikat für nahtlosen Loop -->
+      <img src="foto/depot.avif"    alt="Depot" />
+      <img src="foto/kaufland.avif" alt="Kaufland" />
+      <img src="foto/mainau.avif"   alt="Mainau" />
+      <img src="foto/osiander.avif" alt="Osiander" />
+      <img src="foto/1.avif"        alt="Kunde" />
+      <img src="foto/2.avif"        alt="Berry's" />
+      <img src="foto/3.avif"        alt="STRABAG" />
+      <img src="foto/4.avif"        alt="Dolzer" />
+      <img src="foto/5.avif"        alt="BLÜCHER" />
+      <img src="foto/7.avif"        alt="Gangbild" />
+      <img src="foto/8.avif"        alt="Ärzte am Seerhein" />
+      <img src="foto/9.avif"        alt="Diabetologie Konstanz" />
+      <img src="foto/10.avif"       alt="Ines" />
+      <img src="foto/11.avif"       alt="Praxis im Klosterhof" />
+      <img src="foto/13.avif"       alt="NABU" />
+      <img src="foto/14.avif"       alt="Tortuga" />
+      <img src="foto/15.avif"       alt="LEO Werkstatt" />
+      <img src="foto/16.avif"       alt="ac blue planet" />
+      <img src="foto/17.avif"       alt="Weber" />
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- end about section -->
-
-  
-  <!-- end client section -->
-
-  <!-- contact section -->
-  <section class="contact_section">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-lg-4 col-md-5 offset-md-1">
-          <div class="heading_container">
-            <h2>
-              Kontakt
-            </h2>
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div>
+        <p class="section-label">Kontakt</p>
+        <h2 class="section-title">Jetzt anfragen</h2>
+        <p style="color:var(--gray-500);margin-bottom:40px;font-size:1rem;">Rufen Sie uns an oder schreiben Sie uns – wir melden uns schnell bei Ihnen zurück.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div><h4>Telefon</h4><a href="tel:015122577648">015122 577648</a></div>
           </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4 col-md-5 offset-md-1">
-          <div class="form_container contact-form">
-            <!-- <form action="">
-              <div>
-                <input type="text" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="text" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="email" placeholder="Email" />
-              </div>
-              <div>
-                <input type="text" class="message-box" placeholder="Message" />
-              </div>
-              <div class="btn_box">
-                <button>
-                  SEND
-                </button>
-              </div>
-            </form> -->
-
-            <p>Ousmane Diallo</p>
-            <p> Allensteinerstr. 1</p>
-            <p> D – 78467 Konstanz</p>
-            <p>Telefon: +49 (0) 7531 3611168</p>
-            <p> Mobil: +49 (0) 174 2454283</p>
-            <p>E-Mail: info@diallo-shipping.com</p>
-            <p></p>
-
-            
-            
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div><h4>E-Mail</h4><a href="mailto:velik@hotmail.de">velik@hotmail.de</a></div>
           </div>
-        </div>
-        <div class="col-lg-7 col-md-6 px-0">
-          
-           <div class="map_container">
-            <div class="map">
-              <!-- <div id="googleMap"></div> -->
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5691.248511708697!2d9.147517580313538!3d47.68613632277421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479af66f7ef20413%3A0x1cd756c23015aa!2sAllensteiner%20Str.%201%2C%2078467%20Konstanz!5e0!3m2!1sde!2sde!4v1695057225054!5m2!1sde!2sde" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div> 
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div><h4>Einsatzgebiet</h4><p>Konstanz &amp; Umgebung, Schweiz</p></div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- end contact section -->
-
-  <!-- info section -->
-
-  <section class="info_section layout_padding2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-lg-3 info_col">
-          <div class="info_contact">
-            <h4>
-              Addresse
-            </h4>
-            <div class="contact_link_box">
-              <a target="_blank" href="https://maps.app.goo.gl/4ZxBLYimQapBH94S7">
-                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                <span>
-                  Allensteinerstr.1
-                </span>
-                <p>
-                  D 78467 Konstnaz
-                </p>
-              </a>
-              <a href="">
-                <i class="fa fa-phone" aria-hidden="true"></i>
-                <span>
-                  Call +49 (0) 174 2454283
-                </span>
-              </a>
-              <a href="">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <span>
-                  info@diallo-shipping.com
-                </span>
-              </a>
+      <div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" placeholder="Ihr Name" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefon</label>
+              <input type="tel" id="phone" name="phone" placeholder="Ihre Nummer" />
             </div>
           </div>
-          <div class="info_social">
-            <a href="">
-              <i class="fa fa-facebook" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-linkedin" aria-hidden="true"></i>
-            </a>
-            <a href="">
-              <i class="fa fa-instagram" aria-hidden="true"></i>
-            </a>
+          <div class="form-group">
+            <label for="email">E-Mail *</label>
+            <input type="email" id="email" name="email" placeholder="Ihre E-Mail-Adresse" required />
           </div>
-        </div>
-        <div class="col-md-6 col-lg-3 info_col">
-          <div class="info_detail">
-            <h4>
-              Info
-            </h4>
-            <p>
-              Wir analysieren Ihren individuellen Frachtbedarf und finden für Sie die bestmögliche Transportlösung, maßgeschneidert und ganz auf Ihre individuellen Bedürfnisse ausgerichtet.
-            </p>
+          <div class="form-group">
+            <label for="service">Gewünschter Service</label>
+            <select id="service" name="service">
+              <option value="">– Bitte wählen –</option>
+              <option>Haushaltsreinigung</option>
+              <option>Büro- &amp; Gebäudereinigung</option>
+              <option>Praxisreinigung</option>
+              <option>Unterhaltsreinigung</option>
+              <option>Grundreinigung</option>
+              <option>Kehrwoche</option>
+              <option>Sonstiges</option>
+            </select>
           </div>
-        </div>
-        <div class="col-md-6 col-lg-2 mx-auto info_col">
-          <div class="info_link_box">
-            <h4>
-              Links
-            </h4>
-            <div class="info_links">
-              <a class="active" href="index.html">
-                <img src="images/nav-bullet.png" alt="">
-                Home
-              </a>
-              <a class="" href="#about">
-                <img src="images/nav-bullet.png" alt="">
-                Über uns
-              </a>
-              <a class="" href="#service">
-                <img src="images/nav-bullet.png" alt="">
-                Services
-              </a>
-              <a class="" href="contact.html">
-                <img src="images/nav-bullet.png" alt="">
-                Datenschutz
-              </a>
-            </div>
+          <div class="form-group">
+            <label for="message">Nachricht *</label>
+            <textarea id="message" name="message" placeholder="Beschreiben Sie Ihr Anliegen kurz…" required></textarea>
           </div>
-        </div>
-        
+          <button type="submit" class="btn-submit">Anfrage absenden →</button>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- end info section -->
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">KÖSE<span>CLEAN</span></div>
+  <p>Sauber &amp; Glänzend – Professionelle Reinigung in Konstanz seit 2010</p>
+  <div class="footer-links">
+    <a href="#leistungen">Leistungen</a>
+    <a href="#video-section">Video</a>
+    <a href="#galerie">Galerie</a>
+    <a href="#kontakt">Kontakt</a>
+    <a href="mailto:velik@hotmail.de">velik@hotmail.de</a>
+    <a href="tel:015122577648">015122 577648</a>
+  </div>
+  <div class="footer-copy">© 2024 KÖSE CLEAN · Konstanz &amp; Umgebung · Alle Rechte vorbehalten</div>
+</footer>
 
-  <!-- footer section -->
-  <section class="footer_section">
-    <div class="container">
-      <p>
-        &copy; <span id="displayYear"></span> All Rights Reserved By Diallo Shipping
-        
-      </p>
-    </div>
-  </section>
-  <!-- footer section -->
+<script>
+  // Hamburger
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburgerBtn.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
 
-  <!-- jQery -->
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <!-- popper js -->
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-  </script>
-  <!-- bootstrap js -->
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <!-- owl slider -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
-  </script>
-  <!-- custom js -->
-  <script type="text/javascript" src="js/custom.js"></script>
-  <!-- Google Map -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap">
-  </script>
-  <!-- End Google Map -->
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
 
+  // Lightbox
+  const galleryItems = Array.from(document.querySelectorAll('.gallery-item'));
+  const lightbox     = document.getElementById('lightbox');
+  const lightboxImg  = document.getElementById('lightbox-img');
+  let currentIdx     = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    lightboxImg.src = galleryItems[idx].dataset.src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function showNext() { openLightbox((currentIdx + 1) % galleryItems.length); }
+  function showPrev() { openLightbox((currentIdx - 1 + galleryItems.length) % galleryItems.length); }
+
+  galleryItems.forEach((item, i) => item.addEventListener('click', () => openLightbox(i)));
+  document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+  document.getElementById('lightbox-next').addEventListener('click', showNext);
+  document.getElementById('lightbox-prev').addEventListener('click', showPrev);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft')  showPrev();
+  });
+
+  // Form submit
+  document.getElementById('contact-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const submitBtn = e.target.querySelector('.btn-submit');
+    submitBtn.textContent = '✓ Anfrage gesendet!';
+    submitBtn.style.background = '#16a34a';
+    setTimeout(() => { submitBtn.textContent = 'Anfrage absenden →'; submitBtn.style.background = ''; e.target.reset(); }, 3000);
+  });
+</script>
 </body>
-
 </html>
