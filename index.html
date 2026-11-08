@@ -59,17 +59,26 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('https://static.wixstatic.com/media/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg');
-      background-size: cover; background-position: center 30%;
+      background-color: #ffffff;
+      background-image: url('foto/logo.jpeg');
+      background-size: clamp(220px, 48%, 400px);
+      background-repeat: no-repeat;
+      background-position: center 36%;
+    }
+    @media (max-width: 768px) {
+      .hero-bg {
+        background-size: clamp(180px, 68vw, 280px);
+        background-position: center 28%;
+      }
     }
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(
         to top,
         rgba(5,10,25,1)   0%,
-        rgba(5,10,25,.85) 35%,
-        rgba(5,10,25,.4)  65%,
-        rgba(5,10,25,.1)  100%
+        rgba(5,10,25,.95) 35%,
+        rgba(5,10,25,.75) 65%,
+        rgba(5,10,25,.45) 100%
       );
     }
     .hero-inner {
@@ -84,18 +93,21 @@
       color: rgba(255,255,255,.9); padding: 7px 16px; border-radius: 999px;
       font-size: .78rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
       margin-bottom: 28px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.55);
     }
     .hero h1 {
       font-size: clamp(3rem, 6vw, 5.5rem);
       font-weight: 800; line-height: 1.05;
       letter-spacing: -2px; margin-bottom: 24px;
       max-width: 700px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.6), 0 1px 2px rgba(0,0,0,.7);
     }
     .hero h1 span { color: #60a5fa; }
     .hero-desc {
-      font-size: 1.1rem; color: rgba(255,255,255,.7);
+      font-size: 1.1rem; color: rgba(255,255,255,.9);
       line-height: 1.7; margin-bottom: 40px;
       max-width: 520px;
+      text-shadow: 0 1px 6px rgba(0,0,0,.6);
     }
     .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 60px; }
     .btn-primary {
@@ -216,7 +228,7 @@
 
     /* ── KUNDEN KARUSSELL ── */
     #kunden {
-      background: var(--gray-50);
+      background: var(--white);
       padding: 56px 24px;
       border-top: 1px solid var(--gray-100);
       overflow: hidden;
@@ -231,8 +243,8 @@
     .kunden-track-wrap::after {
       content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2;
     }
-    .kunden-track-wrap::before { left: 0;  background: linear-gradient(to right, var(--gray-50), transparent); }
-    .kunden-track-wrap::after  { right: 0; background: linear-gradient(to left,  var(--gray-50), transparent); }
+    .kunden-track-wrap::before { left: 0;  background: linear-gradient(to right, var(--white), transparent); }
+    .kunden-track-wrap::after  { right: 0; background: linear-gradient(to left,  var(--white), transparent); }
     .kunden-track {
       display: flex; gap: 48px; align-items: center;
       width: max-content;
@@ -241,17 +253,42 @@
     .kunden-track:hover { animation-play-state: paused; }
     .kunden-track img {
       height: 52px; width: auto;
-      filter: grayscale(100%) opacity(50%);
-      transition: filter .3s;
+      filter: none; opacity: .85;
+      transition: opacity .3s;
       flex-shrink: 0;
     }
-    .kunden-track img:hover { filter: grayscale(0%) opacity(100%); }
+    .kunden-track img:hover { filter: none; opacity: 1; }
     @keyframes scroll-logos {
       0%   { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-    .testimonial-card { background: var(--gray-50); border-radius: var(--radius); padding: 28px; border: 1px solid var(--gray-100); display: flex; flex-direction: column; gap: 16px; }
+    .testimonial-wrap { position: relative; }
+    .testimonial-scroll {
+      display: flex; gap: 20px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      padding-bottom: 4px; cursor: grab;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .testimonial-scroll::-webkit-scrollbar { display: none; }
+    .testimonial-scroll:active { cursor: grabbing; }
+    .testimonial-card {
+      background: var(--white); border-radius: var(--radius); padding: 28px;
+      border: 1px solid var(--gray-100); display: flex; flex-direction: column; gap: 16px;
+      min-width: 300px; max-width: 340px; flex-shrink: 0;
+      scroll-snap-align: start; box-shadow: var(--shadow);
+    }
+    .testimonial-nav {
+      display: flex; justify-content: center; gap: 12px; margin-top: 28px;
+    }
+    .testimonial-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid var(--gray-300); background: var(--white);
+      color: var(--gray-700); font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color .2s, background .2s, color .2s;
+    }
+    .testimonial-btn:hover { border-color: var(--blue); background: var(--blue); color: var(--white); }
     .stars { color: #f59e0b; font-size: 1rem; letter-spacing: 2px; }
     .testimonial-card p { font-size: .93rem; color: var(--gray-700); line-height: 1.7; flex: 1; }
     .testimonial-author { display: flex; align-items: center; gap: 12px; margin-top: 4px; }
@@ -288,7 +325,29 @@
     .footer-links a:hover { color: var(--white); }
     .footer-copy { font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; margin-top: 8px; }
 
-    /* ── MOBILE MENU ── */
+    /* ── LEGAL MODAL ── */
+    .legal-modal {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.5); align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .legal-modal.open { display: flex; }
+    .legal-box {
+      background: var(--white); border-radius: var(--radius);
+      max-width: 640px; width: 100%; max-height: 80vh;
+      overflow-y: auto; padding: 40px;
+      position: relative; box-shadow: 0 24px 64px rgba(0,0,0,.25);
+    }
+    .legal-box h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 24px; }
+    .legal-box h3 { font-size: .85rem; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 6px; }
+    .legal-box p, .legal-box a { font-size: .95rem; color: var(--gray-700); line-height: 1.7; }
+    .legal-box a { color: var(--blue); }
+    .legal-close {
+      position: absolute; top: 16px; right: 20px;
+      background: none; border: none; font-size: 1.5rem;
+      cursor: pointer; color: var(--gray-500); line-height: 1;
+    }
+    .legal-close:hover { color: var(--gray-900); }
     #mobile-menu { display: none; flex-direction: column; background: var(--white); border-bottom: 1px solid var(--gray-100); padding: 16px 24px 20px; gap: 4px; }
     #mobile-menu.open { display: flex; }
     #mobile-menu a { padding: 10px 0; font-size: .95rem; font-weight: 500; color: var(--gray-700); text-decoration: none; border-bottom: 1px solid var(--gray-100); }
@@ -321,7 +380,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">KÖSE<span>CLEAN</span></a>
+    <a href="#" class="logo"><img src="foto/logo.jpeg" alt="KÖSE CLEAN" style="height:44px;width:auto;display:block;" /></a>
     <ul class="nav-links">
       <li><a href="#leistungen">Leistungen</a></li>
       <li><a href="#video-section">Video</a></li>
@@ -371,42 +430,49 @@
     <div class="services-grid">
 
       <div class="service-card">
-        <img class="service-card-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&h=340&fit=crop&auto=format" alt="Haushaltsreinigung" loading="lazy" />
+        <img class="service-card-img" src="foto/haushaltsreinigung.jpg" alt="Haushaltsreinigung" loading="lazy" />
         <div class="service-icon">🏠</div>
         <h3>Haushaltsreinigung</h3>
         <p>Professionelle Reinigung Ihrer Wohnung oder Ihres Hauses – regelmäßig oder als Einmal-Service. Sauber, gründlich und diskret.</p>
       </div>
 
       <div class="service-card">
-        <img class="service-card-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=340&fit=crop&auto=format" alt="Büroreinigung" loading="lazy" />
+        <img class="service-card-img" src="foto/bueroreinigung.jpg" alt="Büroreinigung" loading="lazy" />
         <div class="service-icon">🏢</div>
         <h3>Büro- &amp; Gebäudereinigung</h3>
         <p>Saubere Arbeitsräume steigern die Produktivität. Wir reinigen Ihr Büro oder Gebäude zuverlässig – auch außerhalb der Geschäftszeiten.</p>
       </div>
 
       <div class="service-card">
-        <img class="service-card-img" src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=340&fit=crop&auto=format" alt="Praxisreinigung" loading="lazy" />
+        <img class="service-card-img" src="foto/praxisreinigung.jpg" alt="Praxisreinigung" loading="lazy" />
         <div class="service-icon">🏥</div>
         <h3>Praxisreinigung</h3>
         <p>Hygienische Reinigung für Arzt- und Zahnarztpraxen nach höchsten Standards. Zuverlässig, diskret und termingerecht.</p>
       </div>
 
       <div class="service-card">
-        <img class="service-card-img" src="https://images.unsplash.com/photo-1611194625888-3c6621587ee4?w=600&h=340&fit=crop&auto=format" alt="Winterdienst" loading="lazy" />
+        <img class="service-card-img" src="foto/winterdienst.jpg" alt="Winterdienst" loading="lazy" />
         <div class="service-icon">❄️</div>
         <h3>Winterdienst</h3>
         <p>Räumen, streuen, sichern – wir sorgen dafür, dass Ihre Wege und Einfahrten im Winter sicher und eisfrei bleiben.</p>
       </div>
 
       <div class="service-card">
-        <img class="service-card-img" src="https://images.unsplash.com/photo-1563453392212-326f5e854473?w=600&h=340&fit=crop&auto=format" alt="Grundreinigung" loading="lazy" />
+        <img class="service-card-img" src="foto/grundreinigung.jpg" alt="Grundreinigung" loading="lazy" />
         <div class="service-icon">✨</div>
         <h3>Grundreinigung</h3>
         <p>Einmalige Tiefenreinigung für besondere Anlässe, Umzüge oder wenn es mal so richtig gründlich sein soll.</p>
       </div>
 
       <div class="service-card">
-        <img class="service-card-img" src="https://images.unsplash.com/photo-1581578949510-fa7315c4c350?w=600&h=340&fit=crop&auto=format" alt="Kehrwoche" loading="lazy" />
+        <img class="service-card-img" src="foto/fenster.avif" alt="Fenster- und Fassadenreinigung" loading="lazy" />
+        <div class="service-icon">🪟</div>
+        <h3>Fenster- &amp; Fassadenreinigung</h3>
+        <p>Streifenfreie Fenster und saubere Fassaden – innen wie außen. Für ein gepflegtes Erscheinungsbild Ihres Gebäudes.</p>
+      </div>
+
+      <div class="service-card">
+        <img class="service-card-img" src="foto/kehrwoche.jpg" alt="Kehrwoche" loading="lazy" />
         <div class="service-icon">🏗️</div>
         <h3>Kehrwoche</h3>
         <p>Wir übernehmen Ihre Kehrwochenpflichten in Treppenhäusern und Gemeinschaftsflächen – zuverlässig und regelmäßig.</p>
@@ -479,38 +545,38 @@
     <p class="section-sub">Einblicke in unsere tägliche Arbeit – für Privat- und Geschäftskunden.</p>
     <div class="gallery-grid" id="gallery-grid">
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_76da16e56a324b729451b18ab0c0673d~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_76da16e56a324b729451b18ab0c0673d~mv2.jpg/v1/fill/w_800,h_600,al_c,q_85,enc_avif,quality_auto/90a441_76da16e56a324b729451b18ab0c0673d~mv2.jpg" alt="KÖSE CLEAN Arbeit 1" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie1.jpg">
+        <img src="foto/galerie1.jpg" alt="KÖSE CLEAN Arbeit 1" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_4fcb31a65ee64740b6ab128b97284535~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_4fcb31a65ee64740b6ab128b97284535~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_4fcb31a65ee64740b6ab128b97284535~mv2.jpg" alt="KÖSE CLEAN Arbeit 2" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie2.jpg">
+        <img src="foto/galerie2.jpg" alt="KÖSE CLEAN Arbeit 2" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_aff9a6b10cae48b7a0074efc288e5a8f~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_aff9a6b10cae48b7a0074efc288e5a8f~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_aff9a6b10cae48b7a0074efc288e5a8f~mv2.jpg" alt="KÖSE CLEAN Arbeit 3" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie3.jpg">
+        <img src="foto/galerie3.jpg" alt="KÖSE CLEAN Arbeit 3" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_8a5cf4d5d2524e1f9058446077805136~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_8a5cf4d5d2524e1f9058446077805136~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_8a5cf4d5d2524e1f9058446077805136~mv2.jpg" alt="KÖSE CLEAN Arbeit 4" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie4.jpg">
+        <img src="foto/galerie4.jpg" alt="KÖSE CLEAN Arbeit 4" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_912016ea39734b0a8f0ef976ded7f324~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_912016ea39734b0a8f0ef976ded7f324~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_912016ea39734b0a8f0ef976ded7f324~mv2.jpg" alt="KÖSE CLEAN Arbeit 5" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie5.jpg">
+        <img src="foto/galerie5.jpg" alt="KÖSE CLEAN Arbeit 5" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_2fee8c27cb5b4a7ba6db668d1340a190~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_2fee8c27cb5b4a7ba6db668d1340a190~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_2fee8c27cb5b4a7ba6db668d1340a190~mv2.jpg" alt="KÖSE CLEAN Arbeit 6" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie6.jpg">
+        <img src="foto/galerie6.jpg" alt="KÖSE CLEAN Arbeit 6" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
-      <div class="gallery-item" data-src="https://static.wixstatic.com/media/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg">
-        <img src="https://static.wixstatic.com/media/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg/v1/fill/w_600,h_400,al_c,q_85,enc_avif,quality_auto/90a441_75958f0e8b52445ab0d2170df251c14b~mv2.jpg" alt="KÖSE CLEAN Arbeit 7" loading="lazy" />
+      <div class="gallery-item" data-src="foto/galerie7.jpg">
+        <img src="foto/galerie7.jpg" alt="KÖSE CLEAN Arbeit 7" loading="lazy" />
         <div class="gallery-overlay"><svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg></div>
       </div>
 
@@ -532,7 +598,8 @@
     <p class="section-label">Das sagen unsere Kunden</p>
     <h2 class="section-title">Referenzen</h2>
     <p class="section-sub">Wir stehen für Qualität – und unsere Kunden bestätigen das täglich.</p>
-    <div class="testimonial-grid">
+    <div class="testimonial-wrap">
+    <div class="testimonial-scroll" id="testimonial-scroll">
       <div class="testimonial-card">
         <div class="stars">★★★★★</div>
         <p>„KÖSE CLEAN reinigt unser Büro seit Jahren. Immer pünktlich, immer gründlich – wir sind rundum zufrieden und würden sie jederzeit weiterempfehlen."</p>
@@ -557,11 +624,54 @@
           <div class="author-info"><strong>Dr. Reuter</strong><span>Zahnarztpraxis, Konstanz</span></div>
         </div>
       </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Wir nutzen KÖSE CLEAN für unsere Kehrwoche und sind sehr zufrieden. Immer verlässlich, freundlich und das Treppenhaus ist stets makellos sauber."</p>
+        <div class="testimonial-author">
+          <div class="avatar">TK</div>
+          <div class="author-info"><strong>T. Keller</strong><span>Hausverwaltung, Konstanz</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Unsere Filiale wird seit zwei Jahren von KÖSE CLEAN gereinigt. Die Qualität ist konstant hoch und das Team ist immer freundlich. Absolut empfehlenswert!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">AW</div>
+          <div class="author-info"><strong>A. Wagner</strong><span>Filialleitung, Konstanz</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Nach jedem Wintereinbruch kümmert sich KÖSE CLEAN zuverlässig um unsere Gehwege. Nie wieder Stress mit Schnee und Eis – einfach perfekt!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">PB</div>
+          <div class="author-info"><strong>P. Braun</strong><span>Privatkunde, Kreuzlingen</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Die Fensterreinigung war beeindruckend – streifenfrei und blitzblank. Wir beauftragen KÖSE CLEAN jetzt regelmäßig für unsere gesamte Fassade."</p>
+        <div class="testimonial-author">
+          <div class="avatar">LM</div>
+          <div class="author-info"><strong>L. Müller</strong><span>Immobilienverwaltung, Konstanz</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>„Sehr professionelles Unternehmen! Die Reinigung unserer Praxisräume erfolgt immer termingerecht und auf höchstem Niveau. Volle Punktzahl!"</p>
+        <div class="testimonial-author">
+          <div class="avatar">KS</div>
+          <div class="author-info"><strong>K. Schmidt</strong><span>Physiotherapie, Konstanz</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-nav">
+      <button class="testimonial-btn" id="t-prev">&#8592;</button>
+      <button class="testimonial-btn" id="t-next">&#8594;</button>
+    </div>
     </div>
   </div>
 </section>
-
-<!-- KUNDEN KARUSSELL -->
 <section id="kunden">
   <p class="kunden-label">Unsere Kunden vertrauen uns</p>
   <div class="kunden-track-wrap">
@@ -672,6 +782,11 @@
   </div>
 </section>
 
+<!-- KARTE -->
+<section id="karte" style="padding: 0;">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2686.347189476468!2d9.165234312941848!3d47.67767698294575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479af6576b6b5685%3A0x8e6ef9be5322f795!2sB%C3%BCcklestra%C3%9Fe%2078%2C%2078467%20Konstanz-Petershausen-West!5e0!3m2!1sen!2sde!4v1794122973388!5m2!1sen!2sde" width="100%" height="400" style="border:0;display:block;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">KÖSE<span>CLEAN</span></div>
@@ -683,11 +798,59 @@
     <a href="#kontakt">Kontakt</a>
     <a href="mailto:velik@hotmail.de">velik@hotmail.de</a>
     <a href="tel:015122577648">015122 577648</a>
+    <a href="#" id="open-impressum">Impressum</a>
+    <a href="#" id="open-datenschutz">Datenschutz</a>
   </div>
   <div class="footer-copy">© 2024 KÖSE CLEAN · Konstanz &amp; Umgebung · Alle Rechte vorbehalten</div>
 </footer>
 
+<!-- IMPRESSUM -->
+<div class="legal-modal" id="modal-impressum">
+  <div class="legal-box">
+    <button class="legal-close" data-close="modal-impressum">✕</button>
+    <h2>Impressum</h2>
+    <h3>Angaben gemäß § 5 DDG</h3>
+    <p>KÖSE CLEAN<br/>Bücklestraße 78<br/>78467 Konstanz<br/>Deutschland</p>
+    <h3>Vertretung</h3>
+    <p>Geschäftsführung: Veli Köse</p>
+    <h3>Kontakt</h3>
+    <p>Telefon: <a href="tel:+4975313698223">+49 75313698223</a><br/>E-Mail: <a href="mailto:koeseclean@hotmail.de">koeseclean@hotmail.de</a></p>
+    <h3>Registereintrag</h3>
+    <p>Handwerkskammer Konstanz</p>
+  </div>
+</div>
+
+<!-- DATENSCHUTZ -->
+<div class="legal-modal" id="modal-datenschutz">
+  <div class="legal-box">
+    <button class="legal-close" data-close="modal-datenschutz">✕</button>
+    <h2>Datenschutzerklärung</h2>
+    <h3>1. Verantwortlicher</h3>
+    <p>KÖSE CLEAN, Bücklestraße 78, 78467 Konstanz<br/>E-Mail: <a href="mailto:koeseclean@hotmail.de">koeseclean@hotmail.de</a></p>
+    <h3>2. Erhebung und Speicherung personenbezogener Daten</h3>
+    <p>Beim Besuch dieser Website werden durch den Webhoster automatisch Informationen in sogenannten Server-Log-Dateien gespeichert, die Ihr Browser übermittelt (z. B. IP-Adresse, Browsertyp, Datum und Uhrzeit des Zugriffs). Diese Daten sind nicht bestimmten Personen zuordenbar und werden nicht mit anderen Datenquellen zusammengeführt.</p>
+    <h3>3. Kontaktformular</h3>
+    <p>Wenn Sie uns per Kontaktformular oder E-Mail Anfragen zukommen lassen, werden Ihre Angaben inklusive der von Ihnen angegebenen Kontaktdaten zur Bearbeitung der Anfrage gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.</p>
+    <h3>4. Ihre Rechte</h3>
+    <p>Sie haben jederzeit das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer gespeicherten personenbezogenen Daten sowie ein Widerspruchsrecht gegen die Verarbeitung. Wenden Sie sich hierfür an: <a href="mailto:koeseclean@hotmail.de">koeseclean@hotmail.de</a></p>
+    <h3>5. Cookies</h3>
+    <p>Diese Website verwendet keine Cookies.</p>
+    <h3>6. Google Maps</h3>
+    <p>Diese Seite nutzt den Kartendienst Google Maps der Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA. Durch die Nutzung von Google Maps können Informationen über Ihre Nutzung dieser Website an Google übertragen werden. Weitere Informationen finden Sie in der <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
+  </div>
+</div>
+
 <script>
+  // Legal modals
+  document.getElementById('open-impressum').addEventListener('click', e => { e.preventDefault(); document.getElementById('modal-impressum').classList.add('open'); document.body.style.overflow = 'hidden'; });
+  document.getElementById('open-datenschutz').addEventListener('click', e => { e.preventDefault(); document.getElementById('modal-datenschutz').classList.add('open'); document.body.style.overflow = 'hidden'; });
+  document.querySelectorAll('.legal-close').forEach(btn => {
+    btn.addEventListener('click', () => { document.getElementById(btn.dataset.close).classList.remove('open'); document.body.style.overflow = ''; });
+  });
+  document.querySelectorAll('.legal-modal').forEach(modal => {
+    modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('open'); document.body.style.overflow = ''; } });
+  });
+
   // Hamburger
   const hamburgerBtn = document.getElementById('hamburger-btn');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -732,6 +895,12 @@
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'ArrowLeft')  showPrev();
   });
+
+  // Testimonial arrows
+  const tScroll = document.getElementById('testimonial-scroll');
+  const cardWidth = () => tScroll.querySelector('.testimonial-card').offsetWidth + 20;
+  document.getElementById('t-prev').addEventListener('click', () => tScroll.scrollBy({ left: -cardWidth(), behavior: 'smooth' }));
+  document.getElementById('t-next').addEventListener('click', () => tScroll.scrollBy({ left:  cardWidth(), behavior: 'smooth' }));
 
   // Form submit
   document.getElementById('contact-form').addEventListener('submit', e => {
