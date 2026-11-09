@@ -156,8 +156,42 @@
     /* ── SERVICES ── */
     #leistungen { background: var(--gray-50); }
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .service-card { background: var(--white); border-radius: var(--radius); padding: 32px 28px; border: 1px solid var(--gray-100); transition: box-shadow .25s, transform .25s; }
+    .service-card { background: var(--white); border-radius: var(--radius); padding: 32px 28px; border: 1px solid var(--gray-100); transition: box-shadow .25s, transform .25s; cursor: pointer; }
     .service-card:hover { box-shadow: var(--shadow); transform: translateY(-4px); }
+    .service-card-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; font-size: .85rem; font-weight: 600; color: var(--blue); }
+
+    /* ── SERVICE MODAL ── */
+    .service-modal {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.5); align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .service-modal.open { display: flex; }
+    .service-modal-box {
+      background: var(--white); border-radius: var(--radius);
+      max-width: 680px; width: 100%; max-height: 88vh;
+      overflow-y: auto; position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,.25);
+    }
+    .service-box { background: var(--white); border-radius: var(--radius); max-width: 680px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
+    .service-box-img { width: 100%; height: 220px; object-fit: cover; border-radius: var(--radius) var(--radius) 0 0; display: block; }
+    .service-box-body { padding: 32px; }
+    .service-box-icon { font-size: 2rem; margin-bottom: 12px; }
+    .service-box-body h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; }
+    .service-box-intro { font-size: .95rem; color: var(--gray-700); line-height: 1.75; margin-bottom: 20px; }
+    .service-box-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .service-box-body ul li { display: flex; align-items: flex-start; gap: 10px; font-size: .93rem; color: var(--gray-700); }
+    .service-box-body ul li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+    .service-box-cta { display: inline-block; background: var(--blue); color: var(--white); padding: 13px 28px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: .95rem; transition: background .2s; }
+    .service-box-cta:hover { background: var(--blue-dk); }
+    .service-modal-close {
+      position: absolute; top: 14px; right: 18px;
+      background: rgba(0,0,0,.35); border: none; color: white;
+      font-size: 1.2rem; cursor: pointer; border-radius: 50%;
+      width: 32px; height: 32px; display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .service-modal-close:hover { background: rgba(0,0,0,.6); }
     .service-card-img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
     .service-icon { width: 52px; height: 52px; border-radius: 12px; background: var(--blue-lt); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
     .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; }
@@ -325,7 +359,46 @@
     .footer-links a:hover { color: var(--white); }
     .footer-copy { font-size: .8rem; border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; margin-top: 8px; }
 
-    /* ── LEGAL MODAL ── */
+    /* ── SERVICE MODAL ── */
+    .service-modal {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.55); align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .service-modal.open { display: flex; }
+    .service-box {
+      background: var(--white); border-radius: 16px;
+      max-width: 680px; width: 100%; max-height: 88vh;
+      overflow-y: auto; position: relative;
+      box-shadow: 0 24px 64px rgba(0,0,0,.3);
+    }
+    .service-box-img {
+      width: 100%; height: 220px; object-fit: cover;
+      border-radius: 16px 16px 0 0; display: block;
+    }
+    .service-box-body { padding: 32px; }
+    .service-box-icon { font-size: 2rem; margin-bottom: 12px; }
+    .service-box-body h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+    .service-box-body .service-box-intro { font-size: 1rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 24px; }
+    .service-box-body ul { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .service-box-body ul li { display: flex; align-items: flex-start; gap: 10px; font-size: .95rem; color: var(--gray-700); line-height: 1.5; }
+    .service-box-body ul li::before { content: '✓'; color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+    .service-box-cta { display: inline-block; background: var(--blue); color: var(--white); padding: 13px 28px; border-radius: 10px; font-weight: 700; text-decoration: none; font-size: .95rem; transition: background .2s; }
+    .service-box-cta:hover { background: var(--blue-dk); }
+    .service-modal-close {
+      position: absolute; top: 14px; right: 16px;
+      background: rgba(0,0,0,.4); border: none; color: white;
+      width: 32px; height: 32px; border-radius: 50%;
+      font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background .2s; z-index: 1;
+    }
+    .service-modal-close:hover { background: rgba(0,0,0,.7); }
+    .service-card { cursor: pointer; }
+    .service-card-more { display: inline-block; margin-top: 10px; font-size: .85rem; font-weight: 600; color: var(--blue); }
+    .svc-meta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .svc-meta-item { display: flex; align-items: center; gap: 6px; background: var(--gray-50); border: 1px solid var(--gray-100); border-radius: 8px; padding: 8px 14px; font-size: .85rem; color: var(--gray-700); }
+    .svc-meta-label { font-weight: 700; color: var(--gray-500); margin-right: 4px; }
+    .svc-free { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; font-weight: 700; }
     .legal-modal {
       display: none; position: fixed; inset: 0; z-index: 200;
       background: rgba(0,0,0,.5); align-items: center; justify-content: center;
@@ -430,53 +503,60 @@
     <p class="section-sub">Von der Grundreinigung bis zum Winterdienst – wir übernehmen alles zuverlässig und mit Leidenschaft.</p>
     <div class="services-grid">
 
-      <div class="service-card">
+      <div class="service-card" data-service="haushaltsreinigung">
         <img class="service-card-img" src="foto/haushaltsreinigung.jpg" alt="Haushaltsreinigung" loading="lazy" />
         <div class="service-icon">🏠</div>
         <h3>Haushaltsreinigung</h3>
         <p>Professionelle Reinigung Ihrer Wohnung oder Ihres Hauses – regelmäßig oder als Einmal-Service. Sauber, gründlich und diskret.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" data-service="bueroreinigung">
         <img class="service-card-img" src="foto/bueroreinigung.jpg" alt="Büroreinigung" loading="lazy" />
         <div class="service-icon">🏢</div>
         <h3>Büro- &amp; Gebäudereinigung</h3>
         <p>Saubere Arbeitsräume steigern die Produktivität. Wir reinigen Ihr Büro oder Gebäude zuverlässig – auch außerhalb der Geschäftszeiten.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" data-service="praxisreinigung">
         <img class="service-card-img" src="foto/praxisreinigung.jpg" alt="Praxisreinigung" loading="lazy" />
         <div class="service-icon">🏥</div>
         <h3>Praxisreinigung</h3>
         <p>Hygienische Reinigung für Arzt- und Zahnarztpraxen nach höchsten Standards. Zuverlässig, diskret und termingerecht.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" data-service="winterdienst">
         <img class="service-card-img" src="foto/winterdienst.jpg" alt="Winterdienst" loading="lazy" />
         <div class="service-icon">❄️</div>
         <h3>Winterdienst</h3>
         <p>Räumen, streuen, sichern – wir sorgen dafür, dass Ihre Wege und Einfahrten im Winter sicher und eisfrei bleiben.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" data-service="grundreinigung">
         <img class="service-card-img" src="foto/grundreinigung.jpg" alt="Grundreinigung" loading="lazy" />
         <div class="service-icon">✨</div>
         <h3>Grundreinigung</h3>
         <p>Einmalige Tiefenreinigung für besondere Anlässe, Umzüge oder wenn es mal so richtig gründlich sein soll.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" data-service="fensterreinigung">
         <img class="service-card-img" src="foto/fenster.avif" alt="Fenster- und Fassadenreinigung" loading="lazy" />
         <div class="service-icon">🪟</div>
         <h3>Fenster- &amp; Fassadenreinigung</h3>
         <p>Streifenfreie Fenster und saubere Fassaden – innen wie außen. Für ein gepflegtes Erscheinungsbild Ihres Gebäudes.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
-      <div class="service-card">
+      <div class="service-card" data-service="kehrwoche">
         <img class="service-card-img" src="foto/kehrwoche.jpg" alt="Kehrwoche" loading="lazy" />
         <div class="service-icon">🏗️</div>
         <h3>Kehrwoche</h3>
         <p>Wir übernehmen Ihre Kehrwochenpflichten in Treppenhäusern und Gemeinschaftsflächen – zuverlässig und regelmäßig.</p>
+        <span class="service-card-more">Mehr erfahren →</span>
       </div>
 
     </div>
@@ -805,6 +885,25 @@
   <div class="footer-copy">© 2026 KÖSE CLEAN · Konstanz &amp; Umgebung · Alle Rechte vorbehalten</div>
 </footer>
 
+<!-- SERVICE MODAL -->
+<div class="service-modal" id="service-modal">
+  <div class="service-box">
+    <button class="service-modal-close" id="service-modal-close">✕</button>
+    <img class="service-box-img" id="svc-img" src="" alt="" />
+    <div class="service-box-body">
+      <div class="service-box-icon" id="svc-icon"></div>
+      <h2 id="svc-title"></h2>
+      <p class="service-box-intro" id="svc-intro"></p>
+      <ul id="svc-list"></ul>
+      <div class="svc-meta">
+        <div class="svc-meta-item"><span class="svc-meta-label">Turnus</span><span id="svc-turnus"></span></div>
+        <div class="svc-meta-item svc-free"><span>✓ Kostenfreies Angebot</span></div>
+      </div>
+      <a href="#kontakt" class="service-box-cta" id="svc-cta">Jetzt kostenlos anfragen</a>
+    </div>
+  </div>
+</div>
+
 <!-- IMPRESSUM -->
 <div class="legal-modal" id="modal-impressum">
   <div class="legal-box">
@@ -842,6 +941,72 @@
 </div>
 
 <script>
+  // Service modals
+  const serviceData = {
+    haushaltsreinigung: {
+      icon: '🏠', title: 'Haushaltsreinigung', img: 'foto/haushaltsreinigung.jpg',
+      turnus: 'Täglich · Wöchentlich · Nach Bedarf',
+      intro: 'Wir reinigen Ihre Wohnung oder Ihr Haus professionell, gründlich und diskret – ob regelmäßig oder als einmaligen Service.',
+      items: ['Staubsaugen & Wischen aller Böden', 'Küche inkl. Geräte & Arbeitsflächen', 'Badezimmer & Sanitäranlagen', 'Fenster & Türrahmen', 'Möbel abstauben & pflegen', 'Regelmäßige oder einmalige Buchung möglich']
+    },
+    bueroreinigung: {
+      icon: '🏢', title: 'Büro- & Gebäudereinigung', img: 'foto/bueroreinigung.jpg',
+      turnus: 'Täglich · Wöchentlich · Monatlich',
+      intro: 'Saubere Arbeitsräume steigern die Produktivität und hinterlassen einen professionellen Eindruck. Wir reinigen auch außerhalb der Geschäftszeiten.',
+      items: ['Büros, Konferenzräume & Flure', 'Küchen- & Pausenbereiche', 'Sanitäranlagen & WCs', 'Böden, Teppiche & Hartböden', 'Reinigung nach Maß – täglich, wöchentlich oder monatlich', 'Diskret & zuverlässig – auch nachts oder am Wochenende']
+    },
+    praxisreinigung: {
+      icon: '🏥', title: 'Praxisreinigung', img: 'foto/praxisreinigung.jpg',
+      turnus: 'Täglich · Nach Bedarf',
+      intro: 'Hygiene ist in Arzt- und Zahnarztpraxen oberstes Gebot. Wir erfüllen höchste Hygienestandards – termingerecht und diskret.',
+      items: ['Desinfektion von Behandlungszimmern', 'Wartebereiche & Empfang', 'Sanitäranlagen nach Hygienevorschriften', 'Böden & Oberflächen keimfrei reinigen', 'Termingerechte Reinigung vor/nach Praxiszeiten', 'Erfahrung mit Gesundheitseinrichtungen']
+    },
+    winterdienst: {
+      icon: '❄️', title: 'Winterdienst', img: 'foto/winterdienst.jpg',
+      turnus: 'Saisonal · Bei Bedarf · Saison-Vertrag',
+      intro: 'Zuverlässiger Winterdienst für Privatpersonen und Unternehmen. Wir sorgen dafür, dass Ihre Wege sicher und eisfrei bleiben.',
+      items: ['Schneeräumen von Gehwegen & Einfahrten', 'Abstumpfen mit Salz oder Sand', 'Frühmorgens vor Arbeitsbeginn', 'Parkplätze & Betriebsgelände', 'Privathaushalte & Gewerbe', 'Saison-Verträge oder Einzeleinsätze']
+    },
+    grundreinigung: {
+      icon: '✨', title: 'Grundreinigung', img: 'foto/grundreinigung.jpg',
+      turnus: 'Einmalig · Saisonal · Nach Bedarf',
+      intro: 'Wenn es mal so richtig gründlich sein soll – unsere Grundreinigung ist ideal nach Umzügen, Renovierungen oder als saisonale Tiefenreinigung.',
+      items: ['Intensive Tiefenreinigung aller Räume', 'Kühlschrank, Herd & Backofen innen', 'Kalk- & Schmutzentfernung im Bad', 'Fenster innen & außen', 'Schränke & Schubladen leeren & reinigen', 'Ideal für Umzüge, Übergaben & besondere Anlässe']
+    },
+    fensterreinigung: {
+      icon: '🪟', title: 'Fenster- & Fassadenreinigung', img: 'foto/fenster.avif',
+      turnus: 'Monatlich · Quartalsweise · Nach Bedarf',
+      intro: 'Streifenfreie Fenster und gepflegte Fassaden für ein einladendes Erscheinungsbild – innen und außen.',
+      items: ['Fensterreinigung innen & außen', 'Rahmen, Dichtungen & Fensterbänke', 'Fassadenreinigung & Pflege', 'Schaufenster & Glasfronten', 'Für Privat- & Geschäftskunden', 'Professionelle Geräte für streifenfreies Ergebnis']
+    },
+    kehrwoche: {
+      icon: '🏗️', title: 'Kehrwoche', img: 'foto/kehrwoche.jpg',
+      turnus: 'Wöchentlich · Nach Kehrwochenplan',
+      intro: 'Wir übernehmen Ihre Kehrwochenpflichten zuverlässig und regelmäßig – damit Sie sich keine Gedanken mehr darum machen müssen.',
+      items: ['Treppenhäuser fegen & wischen', 'Gemeinschaftsflächen reinigen', 'Eingangsbereiche & Klingelbereiche', 'Keller- & Tiefgaragenzugänge', 'Zuverlässig nach Kehrwochenplan', 'Für Wohnungseigentümer & Hausverwaltungen']
+    }
+  };
+
+  const serviceModal = document.getElementById('service-modal');
+  document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const d = serviceData[card.dataset.service];
+      if (!d) return;
+      document.getElementById('svc-img').src = d.img;
+      document.getElementById('svc-img').alt = d.title;
+      document.getElementById('svc-icon').textContent = d.icon;
+      document.getElementById('svc-title').textContent = d.title;
+      document.getElementById('svc-intro').textContent = d.intro;
+      document.getElementById('svc-list').innerHTML = d.items.map(i => `<li>${i}</li>`).join('');
+      document.getElementById('svc-turnus').textContent = d.turnus;
+      serviceModal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  document.getElementById('service-modal-close').addEventListener('click', () => { serviceModal.classList.remove('open'); document.body.style.overflow = ''; });
+  serviceModal.addEventListener('click', e => { if (e.target === serviceModal) { serviceModal.classList.remove('open'); document.body.style.overflow = ''; } });
+  document.getElementById('svc-cta').addEventListener('click', () => { serviceModal.classList.remove('open'); document.body.style.overflow = ''; });
+
   // Legal modals
   document.getElementById('open-impressum').addEventListener('click', e => { e.preventDefault(); document.getElementById('modal-impressum').classList.add('open'); document.body.style.overflow = 'hidden'; });
   document.getElementById('open-datenschutz').addEventListener('click', e => { e.preventDefault(); document.getElementById('modal-datenschutz').classList.add('open'); document.body.style.overflow = 'hidden'; });
